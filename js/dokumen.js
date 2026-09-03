@@ -32,6 +32,22 @@ window.DOKUMEN_ITEMS = [
     thumb: 'assets/images/docs/thumb-esai.jpg',
     fileLabel: 'PDF · 10 hal · 177 KB'
   },
+  {
+    cat: 'karya', badge: 'Karya & Publikasi', icon: 'fas fa-dice',
+    title: 'Gobak Sodor',
+    desc: 'Karya permainan edukatif yang telah terdaftar hak cipta di PDKI DJKI.',
+    tags: ['HKI', 'Hak Cipta'],
+    link: 'https://pdki-indonesia.dgip.go.id:/link/45433030323032343236323235397c636f70797269676874',
+    chipLabel: 'HKI · PDKI'
+  },
+  {
+    cat: 'karya', badge: 'Karya & Publikasi', icon: 'fas fa-suitcase',
+    title: 'Koper Bilbul',
+    desc: 'Karya edukatif yang telah terdaftar hak cipta di PDKI DJKI.',
+    tags: ['HKI', 'Hak Cipta'],
+    link: 'https://pdki-indonesia.dgip.go.id/detail/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+    chipLabel: 'HKI · PDKI'
+  },
   /* ── PERANGKAT PEMBELAJARAN ── */
   {
     cat: 'perangkat', badge: 'Perangkat Pembelajaran', icon: 'fas fa-globe-asia',
@@ -59,6 +75,14 @@ window.DOKUMEN_ITEMS = [
     thumb: 'assets/images/docs/thumb-modul-mtk.jpg',
     file: 'assets/docs/perangkat/modul-matematika-kelas-4-bab-1.pdf',
     fileLabel: 'PDF · 33 hal · 5,1 MB'
+  },
+  {
+    cat: 'perangkat', badge: 'Perangkat Pembelajaran', icon: 'fas fa-wand-magic-sparkles',
+    title: 'SI PINTAR: Simak, dan Pahami Inti Paragraf',
+    desc: 'Media pembelajaran interaktif Genially tentang ide pokok dan ide pendukung untuk siswa sekolah dasar.',
+    tags: ['Genially', 'B. Indonesia'],
+    link: 'https://view.genially.com/6943a2d9f4a57ed704cd820a',
+    chipLabel: 'Genially · Interaktif'
   },
   /* ── SERTIFIKAT & PELATIHAN ── */
   {
@@ -171,15 +195,22 @@ window.DOKUMEN_ITEMS = [
 
   var html = window.DOKUMEN_ITEMS.map(function (it, i) {
     var tags = it.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('');
-    var chip = it.fileLabel.split('·').slice(0, 2).join('·').trim();
+    var chip = it.chipLabel || it.fileLabel.split('·').slice(0, 2).join('·').trim();
     var cover = it.thumb
       ? '<a class="doc-thumb" href="#" data-doc="' + i + '" aria-label="Pratinjau ' + it.title + '">' +
         '<img src="' + it.thumb + '" alt="Pratinjau ' + it.title + '" loading="lazy">' +
         '<span class="doc-chip">' + chip + '</span></a>'
       : '<div class="doc-cover doc-' + it.cat + '">' +
         '<i class="' + it.icon + '"></i>' +
-        '<span>' + it.fileLabel + '</span>' +
+        '<span>' + chip + '</span>' +
         '</div>';
+    var action = it.link
+      ? '<a class="doc-link" href="' + it.link + '" target="_blank" rel="noopener">' +
+        '<i class="fas fa-external-link-alt"></i> Kunjungi Tautan' +
+        '</a>'
+      : '<a class="doc-link" href="#" data-doc="' + i + '">' +
+        '<i class="fas fa-file-pdf"></i> Buka Dokumen' +
+        '</a>';
     return '' +
       '<article class="project-card reveal" data-category="' + it.cat + '">' +
         cover +
@@ -188,9 +219,7 @@ window.DOKUMEN_ITEMS = [
           '<h3>' + it.title + '</h3>' +
           '<p>' + it.desc + '</p>' +
           '<div class="tech-tags">' + tags + '</div>' +
-          '<a class="doc-link" href="#" data-doc="' + i + '">' +
-            '<i class="fas fa-file-pdf"></i> Buka Dokumen' +
-          '</a>' +
+          action +
         '</div>' +
       '</article>';
   }).join('');
