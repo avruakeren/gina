@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portofolio Gina Martiana Pratiwi, S.Pd — lulusan PGSD Untirta: karya publikasi, perangkat pembelajaran, sertifikat, dan skripsi.">
+    <meta name="keywords" content="portofolio, PGSD, pendidikan guru sekolah dasar, Untirta, perangkat pembelajaran, Gina Martiana Pratiwi">
+    <meta name="author" content="Gina Martiana Pratiwi">
+    <meta name="theme-color" id="theme-color" content="#0D1117">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Portofolio — Gina Martiana Pratiwi, S.Pd">
+    <meta property="og:description" content="Karya publikasi, perangkat pembelajaran, sertifikat & pelatihan, dan skripsi.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/profile.webp">
+    <!-- TODO: ganti og:image dengan URL absolut saat deploy, mis. https://domain.com/assets/images/profile.webp -->
+
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+    <title>Portofolio | Gina Martiana Pratiwi, S.Pd</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav id="navbar" role="navigation" aria-label="Navigasi utama">
+        <div class="nav-container">
+            <button class="hamburger" id="hamburger-btn" aria-label="Buka menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#about"     class="nav-link">Tentang</a></li>
+                <li><a href="#skills"    class="nav-link">Keahlian</a></li>
+                <li><a href="#projects"  class="nav-link">Proyek</a></li>
+                <li><a href="#education" class="nav-link">Pendidikan</a></li>
+                <li><a href="#contact"   class="nav-link">Kontak</a></li>
+            </ul>
+
+            <button class="theme-toggle" id="theme-toggle" aria-label="Ganti tema">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="hero">
+        <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-greeting">👋 Halo, saya</p>
+                <h1 class="hero-name">
+                    <span class="name-highlight">Gina Martiana Pratiwi, S.Pd</span>
+                </h1>
+                <div class="hero-typing">
+                    <span>Saya adalah </span>
+                    <span class="typing-text" id="typing-text"></span>
+                    <span class="typing-cursor" aria-hidden="true">|</span>
+                </div>
+                <p class="hero-description">
+                    Saya adalah <strong>Fresh Graduate S1-PENDIDIKAN GURU SEKOLAH DASAR/FKIP</strong>
+                    yang berfokus pada pendidikan, pengajaran, dan pembentukan calon guru atau tenaga kependidikan profesional.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Lihat Proyek
+                    </a>
+                    <a href="#" class="btn btn-outline" id="download-cv">
+                        <i class="fas fa-download"></i> Unduh CV
+                    </a>
+                </div>
+                <div class="hero-socials">
+                    <a href="#" class="social-link" aria-label="GitHub" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:Martianapp@gmail.com" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="profile-wrapper">
+                    <div class="profile-ring" id="profile-ring">
+                        <img
+                            id="profile-photo"
+                            src="assets/images/profile.webp"
+                            alt="Foto profil Gina Martiana Pratiwi"
+                            class="profile-photo"
+                        >
+                    </div>
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span>Open to work</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section id="about" aria-labelledby="about-title">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">01 — Tentang Saya</span>
+                <h2 id="about-title" class="section-title">
+                    Kenali <span class="gradient-text">Saya Lebih Dekat</span>
+                </h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="about-img-box">
+                        <img src="assets/images/profile.webp" alt="Gina Martiana Pratiwi" loading="lazy"
+                             onerror="this.style.display='none';">
+                        <div class="exp-badge">
+                            <span class="exp-num">4+</span>
+                            <span class="exp-lbl">Tahun<br>Belajar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-text reveal">
+                    <h3>Mahasiswa yang <span class="gradient-text">Antusias</span> di Bidang Ilmu Mengajar &amp; Pendidikan</h3>
+                    <p>
+                        Halo! Saya mahasiswa <strong>Pendidikan Guru Sekolah Dasar</strong>
+                        yang memiliki passion dalam pengembangan kurikulum dan metode pengajaran yang inovatif.
+                        Saya percaya pendidikan adalah alat yang powerful untuk membentuk generasi masa depan.
+                    </p>
+                    <p>
+                        Saya aktif mengembangkan diri di bidang pendidikan, pengajaran, penelitian pendidikan,
+                        dan pengabdian kepada masyarakat yang berkaitan dengan dunia pendidikan.
+                    </p>
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-check-circle"></i> Psikologi Pendidikan</li>
+                        <li><i class="fas fa-check-circle"></i> Kurikulum &amp; Pembelajaran</li>
+                        <li><i class="fas fa-check-circle"></i> Metode Pengajaran Inovatif</li>
+                        <li><i class="fas fa-check-circle"></i> Media dan Teknologi Pembelajaran</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Hubungi Saya
+                    </a>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <i class="fas fa-book-open stat-icon"></i>
+                    <div class="stat-body">
+                        <span class="stat-num" data-count="3">0</span>
+                    </div>
+                    <p>Karya &amp; Publikasi</p>
+                </div>
+                <div class="stat-card reveal">
+                    <i class="fas fa-chalkboard-teacher stat-icon"></i>
+                    <div class="stat-body">
+                        <span class="stat-num" data-count="3">0</span>
+                    </div>
+                    <p>Perangkat Pembelajaran</p>
+                </div>
+                <div class="stat-card reveal">
+                    <i class="fas fa-certificate stat-icon"></i>
+                    <div class="stat-body">
+                        <span class="stat-num" data-count="10">0</span>
+                    </div>
+                    <p>Sertifikat &amp; Pelatihan</p>
+                </div>
+                <div class="stat-card reveal">
+                    <i class="fas fa-graduation-cap stat-icon"></i>
+                    <div class="stat-body">
+                        <span class="stat-num" data-count="1">0</span>
+                    </div>
+                    <p>Skripsi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS SECTION ========== -->
+    <section id="skills" aria-labelledby="skills-title">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">02 — Keahlian</span>
+                <h2 id="skills-title" class="section-title">
+                    Ilmu yang <span class="gradient-text">Saya Kuasai</span>
+                </h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="skills-wrapper">
+                <!-- Kompetensi Pedagogik -->
+                <div class="skills-col reveal">
+                    <h3 class="skills-cat">
+                        <i class="fas fa-chalkboard-teacher"></i> Kompetensi Pedagogik
+                    </h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span><i class="fas fa-book-open"></i> Perencanaan Pembelajaran</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span><i class="fas fa-users"></i> Manajemen Kelas</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span><i class="fas fa-comments"></i> Komunikasi Pendidikan</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span><i class="fas fa-clipboard-check"></i> Evaluasi Pembelajaran</span>
+                            <span>87%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="87"></div></div>
+                    </div>
+                </div>
+
+                <!-- Kompetensi Profesional -->
+                <div class="skills-col reveal">
+                    <h3 class="skills-cat">
+                        <i class="fas fa-graduation-cap"></i> Kompetensi Profesional
+                    </h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span><i class="fas fa-file-word"></i> Microsoft Word</span>
+                            <span>92%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span><i class="fas fa-file-excel"></i> Microsoft Excel</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span><i class="fas fa-file-powerpoint"></i> Microsoft PowerPoint</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span><i class="fas fa-laptop"></i> Media Pembelajaran Digital</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                    </div>
+                </div>
+
+                <!-- Tools & Platform -->
+                <div class="skills-col reveal">
+                    <h3 class="skills-cat">
+                        <i class="fas fa-tools"></i> Tools &amp; Platform
+                    </h3>
+                    <div class="tools-grid">
+                        <span class="tool-badge"><i class="fab fa-google"></i> Google Classroom</span>
+                        <span class="tool-badge"><i class="fas fa-chalkboard"></i> Moodle LMS</span>
+                        <span class="tool-badge"><i class="fas fa-palette"></i> Canva</span>
+                        <span class="tool-badge"><i class="fab fa-microsoft"></i> Microsoft Office</span>
+                        <span class="tool-badge"><i class="fas fa-file-alt"></i> Google Workspace</span>
+                        <span class="tool-badge"><i class="fas fa-video"></i> Google Meet</span>
+                        <span class="tool-badge"><i class="fas fa-poll"></i> Google Forms</span>
+                        <span class="tool-badge"><i class="fas fa-robot"></i> AI Tools</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS SECTION ========== -->
+    <section id="projects" aria-labelledby="projects-title">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03 — Proyek</span>
+                <h2 id="projects-title" class="section-title">
+                    Proyek <span class="gradient-text">Terbaik Saya</span>
+                </h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="filter-buttons" role="group" aria-label="Filter proyek">
+                <button class="filter-btn active" data-filter="all">Semua <span class="filter-count" data-count-for="all"></span></button>
+                <button class="filter-btn" data-filter="karya">Karya &amp; Publikasi <span class="filter-count" data-count-for="karya"></span></button>
+                <button class="filter-btn" data-filter="perangkat">Perangkat Pembelajaran <span class="filter-count" data-count-for="perangkat"></span></button>
+                <button class="filter-btn" data-filter="sertifikat">Sertifikat &amp; Pelatihan <span class="filter-count" data-count-for="sertifikat"></span></button>
+                <button class="filter-btn" data-filter="skripsi">Skripsi <span class="filter-count" data-count-for="skripsi"></span></button>
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+                <!-- Kartu dokumen dirender otomatis dari js/dokumen.js -->
+            </div>
+
+            <div class="projects-cta">
+                <a href="#" class="btn btn-outline">
+                    <i class="fas fa-folder-open"></i>
+                    Lihat Portofolio Lengkap
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EDUCATION SECTION ========== -->
+    <section id="education" aria-labelledby="education-title">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04 — Pendidikan</span>
+                <h2 id="education-title" class="section-title">
+                    Riwayat <span class="gradient-text">Pendidikan</span>
+                </h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">2022 — 2026</span>
+                        <h3>S1 PENDIDIKAN GURU SEKOLAH DASAR/FKIP</h3>
+                        <p class="timeline-place"><i class="fas fa-university"></i> Universitas Sultan Ageng Tirtayasa</p>
+                        <p>Mempelajari Teori dan praktik pembelajaran, Psikologi pendidikan, Evaluasi Pembelajaran, Pengembangan kurikulum.</p>
+                        <div class="timeline-tags">
+                            <span>Lulus 2026</span>
+                            <span>Lulusan Terbaik</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">2021 — 2024</span>
+                        <h3>Madrasah Aliyah</h3>
+                        <p class="timeline-place"><i class="fas fa-school"></i> MA Al-Jauharotunnaqiyyah</p>
+                        <p>Mempelajari ilmu agama, fiqih, hukum islam, dan ilmu nahwu shorof.</p>
+                        <div class="timeline-tags">
+                            <span>Lulus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certs-grid">
+                <div class="cert-card reveal">
+                    <i class="fas fa-trophy cert-icon"></i>
+                    <h4>Penghargaan Lulusan Terbaik FKIP</h4>
+                    <p>Universitas Sultan Ageng Tirtayasa • 2026</p>
+                </div>
+                <div class="cert-card reveal">
+                    <i class="fas fa-pen-fancy cert-icon"></i>
+                    <h4>Lokakarya Penulisan Esai bagi Generasi Muda</h4>
+                    <p>Kantor Bahasa Banten • 2026</p>
+                </div>
+                <div class="cert-card reveal">
+                    <i class="fas fa-users-cog cert-icon"></i>
+                    <h4>Panitia Workshop RPS OBE</h4>
+                    <p>PGSD Untirta</p>
+                </div>
+                <div class="cert-card reveal">
+                    <i class="fas fa-user-check cert-icon"></i>
+                    <h4>Workshop Kontinuitas Kurikulum Merdeka</h4>
+                    <p>Panitia &amp; Peserta • PGSD Untirta</p>
+                </div>
+                <div class="cert-card reveal">
+                    <i class="fas fa-clipboard-check cert-icon"></i>
+                    <h4>Pelatihan Nasional Menyusun Asesmen Pembelajaran</h4>
+                    <p>Pelatihan Nasional</p>
+                </div>
+                <div class="cert-card reveal">
+                    <i class="fas fa-chalkboard-teacher cert-icon"></i>
+                    <h4>Webinar Praktik Baik Peningkatan Profesional Guru</h4>
+                    <p>Webinar Nasional</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contact" aria-labelledby="contact-title">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">05 — Kontak</span>
+                <h2 id="contact-title" class="section-title">
+                    Mari <span class="gradient-text">Terhubung</span>
+                </h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Ada Proyek atau Kolaborasi?</h3>
+                    <p>Saya terbuka untuk peluang magang, proyek freelance, dan kolaborasi tim. Jangan ragu untuk menghubungi saya!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <span>Email</span>
+                                <a href="mailto:Martianapp@gmail.com">Martianapp@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <span>WhatsApp</span>
+                                <a href="https://wa.me/6285778078397" target="_blank">+62 857-7807-8397</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <span>Lokasi</span>
+                                <p>Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <form class="contact-form reveal" id="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+                        <span class="field-error" id="name-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Alamat Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan Alamat Email Anda" required>
+                        <span class="field-error" id="email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subjek</label>
+                        <input type="text" id="subject" name="subject" placeholder="Topik pesan Anda">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                        <span class="field-error" id="message-error"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Kirim Pesan
+                    </button>
+                    <div class="form-success" id="form-success" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="status-dot"></span>
+                <span class="footer-open">Open to Work</span>
+            </div>
+            <div class="footer-socials">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Kembali ke atas" title="Ke atas">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ========== MODAL PRATINJAU DOKUMEN ========== -->
+    <div class="doc-modal" id="doc-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="doc-modal-title">
+        <div class="doc-modal-box" role="document">
+            <div class="doc-modal-head">
+                <div>
+                    <h3 id="doc-modal-title">Pratinjau Dokumen</h3>
+                    <p id="doc-modal-meta"></p>
+                </div>
+                <button class="doc-modal-close" id="doc-modal-close" aria-label="Tutup pratinjau">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="doc-modal-loading" id="doc-modal-loading">Memuat dokumen…</p>
+            <iframe id="doc-modal-frame" title="Pratinjau dokumen PDF"></iframe>
+            <div class="doc-modal-foot">
+                <a id="doc-modal-download" class="btn btn-primary" href="#" download>
+                    <i class="fas fa-download"></i> Unduh
+                </a>
+                <a id="doc-modal-newtab" class="btn btn-outline" href="#" target="_blank" rel="noopener">
+                    <i class="fas fa-external-link-alt"></i> Tab baru
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT — DOM, Events, Intersection Observer, Canvas
+         ============================================================ -->
+        <script src="js/dokumen.js"></script>
+        <script src="js/main.js" defer></script>
+</body>
+</html>
