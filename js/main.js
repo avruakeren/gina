@@ -131,32 +131,6 @@ const revealObserver = new IntersectionObserver(
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* ── 5. SKILL BAR ANIMATION (anime.js) ─────────────────────── */
-const skillObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (!hasAnime) {
-          document.querySelectorAll('.skill-fill').forEach(bar => {
-            bar.style.width = bar.getAttribute('data-width') + '%';
-          });
-        } else {
-          anime({
-            targets: '.skill-fill',
-            width: el => el.getAttribute('data-width') + '%',
-            duration: 1400,
-            delay: anime.stagger(120),
-            easing: 'easeOutCubic'
-          });
-        }
-        skillObserver.disconnect();
-      }
-    });
-  },
-  { threshold: 0.3 }
-);
-const skillsSection = document.getElementById('skills');
-if (skillsSection) skillObserver.observe(skillsSection);
-
 /* ── 6. COUNTER ANIMATION (anime.js) ───────────────────────── */
 const counterObserver = new IntersectionObserver(
   (entries) => {
@@ -350,7 +324,7 @@ animateParticles();
     });
   };
   document.querySelectorAll('.stat-card, .cert-card').forEach(el => bindHover(el, true));
-  document.querySelectorAll('.tool-badge, .social-link, .btn-primary, .btn-outline').forEach(el => bindHover(el, false));
+  document.querySelectorAll('.social-link, .btn-primary, .btn-outline').forEach(el => bindHover(el, false));
 })();
 
 /* ── 14. ABOUT PHOTO SLIDER ───────────────────────────────── */
