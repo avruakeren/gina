@@ -278,16 +278,6 @@ section[id] { scroll-margin-top: calc(var(--navbar-h) + 1rem); }
   color: var(--primary);
 }
 
-.hero-typing {
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  margin-bottom: 1.25rem;
-  min-height: 1.8rem;
-}
-
-.typing-text { color: var(--accent); font-weight: 600; }
-.typing-cursor { color: var(--accent); animation: blink 1s infinite; }
-
 .hero-description {
   font-size: 1rem;
   color: var(--text-muted);

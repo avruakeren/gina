@@ -56,42 +56,6 @@ window.addEventListener('scroll', () => {
   });
 });
 
-/* ── 3. TYPING ANIMATION ────────────────────────────────────── */
-const typingEl    = document.getElementById('typing-text');
-const typingWords = [
-  'Tenaga Pendidik',
-  'Pengembang Kurikulum',
-  'Trainer/Instruktur',
-  'Pengembang Media Pembelajaran',
-  'Pendidik Profesional',
-  'Pendidikan Inklusif',
-];
-
-let wordIndex = 0, charIndex = 0, isDeleting = false;
-
-function typeEffect() {
-  const currentWord = typingWords[wordIndex];
-  if (isDeleting) {
-    typingEl.textContent = currentWord.slice(0, charIndex - 1);
-    charIndex--;
-  } else {
-    typingEl.textContent = currentWord.slice(0, charIndex + 1);
-    charIndex++;
-  }
-
-  let speed = isDeleting ? 60 : 110;
-
-  if (!isDeleting && charIndex === currentWord.length) {
-    speed = 1800; isDeleting = true;
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    wordIndex = (wordIndex + 1) % typingWords.length;
-    speed = 400;
-  }
-  setTimeout(typeEffect, speed);
-}
-setTimeout(typeEffect, 800);
-
 /* ── 4. SCROLL REVEAL ANIMATION (anime.js) ─────────────────── */
 const REDUCED  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasAnime = typeof anime !== 'undefined' && !REDUCED;
@@ -280,7 +244,7 @@ animateParticles();
 (function () {
   if (!hasAnime) return;
   const heroEls = document.querySelectorAll(
-    '.hero-greeting, .hero-name, .hero-typing, .hero-description, .hero-buttons, .hero-socials, .hero-image'
+    '.hero-greeting, .hero-name, .hero-description, .hero-buttons, .hero-socials, .hero-image'
   );
   heroEls.forEach(el => { el.style.opacity = 0; });
 
@@ -288,12 +252,11 @@ animateParticles();
   tl.add({ targets: '.hero-greeting',    opacity: [0, 1], translateY: [24, 0], filter: ['blur(6px)', 'blur(0px)'], duration: 700 }, 0)
     .add({ targets: '.hero-name',        opacity: [0, 1], translateY: [36, 0], filter: ['blur(8px)', 'blur(0px)'], duration: 900 }, 150)
     .add({ targets: '.hero-image',       opacity: [0, 1], translateY: [30, 0], scale: [0.95, 1], duration: 900 }, 300)
-    .add({ targets: '.hero-typing',      opacity: [0, 1], translateY: [24, 0], duration: 700 }, 700)
-    .add({ targets: '.hero-description', opacity: [0, 1], translateY: [24, 0], duration: 700 }, 900)
-    .add({ targets: '.hero-buttons',     opacity: [0, 1], translateY: [24, 0], duration: 700 }, 1100)
+    .add({ targets: '.hero-description', opacity: [0, 1], translateY: [24, 0], duration: 700 }, 700)
+    .add({ targets: '.hero-buttons',     opacity: [0, 1], translateY: [24, 0], duration: 700 }, 900)
     .add({ targets: '.hero-socials .social-link',
            opacity: [0, 1], translateY: [16, 0], scale: [0.85, 1],
-           duration: 600, delay: anime.stagger(80) }, 1250);
+           duration: 600, delay: anime.stagger(80) }, 1050);
 })();
 
 /* ── 13. HOVER PREMIUM (anime.js) ──────────────────────────── */
