@@ -4,11 +4,10 @@ Taruh foto tiap album di subfolder sesuai `id` di `js/dokumentasi.js`:
 
 | Album (id)     | Folder          | Isi |
 |----------------|-----------------|-----|
-| Sosialisasi    | `sosialisasi/`  | 1 foto (`01.jpg`: Tabligh Akbar) |
 | Pengabdian     | `pengabdian/`   | 11 foto (`01.jpg`–`11.jpg`) |
 | Pelatihan      | `pelatihan/`    | 9 foto (`01.jpg`–`09.jpg`) |
 | Pembelajaran   | `pembelajaran/` | 27 foto (`01.jpg`–`27.jpg`) |
-| Lainnya        | `lainlain/`     | 1 foto (`01.jpg`: stand PLP Holistik SDN Rawu 2025) |
+| Lainnya        | `lainlain/`     | 2 foto (`01.jpg`–`02.jpg`: stand PLP Holistik + Tabligh Akbar) |
 
 Aturan:
 - Format `.webp` / `.jpg`, usahakan < 300 KB per foto (bisa kompres via squoosh.app).

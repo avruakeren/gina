@@ -20,15 +20,6 @@
    ============================================================ */
 window.DOKUMENTASI_ALBUMS = [
   {
-    id: 'sosialisasi',
-    title: 'Kegiatan Sosialisasi',
-    desc: 'Dokumentasi kegiatan sosialisasi program dan pembelajaran kepada siswa, guru, dan masyarakat.',
-    icon: 'fas fa-bullhorn',
-    images: [
-      { src: 'assets/images/dokumentasi/sosialisasi/01.jpg', alt: 'Sosialisasi Tabligh Akbar', desc: 'Sosialisasi pada acara Tabligh Akbar.' }
-    ]
-  },
-  {
     id: 'pengabdian',
     title: 'Kegiatan Pengabdian / Sukarelawan',
     desc: 'Dokumentasi kegiatan pengabdian kepada masyarakat dan aksi sukarelawan di bidang pendidikan.',
@@ -106,7 +97,8 @@ window.DOKUMENTASI_ALBUMS = [
     desc: 'Dokumentasi kegiatan lainnya, termasuk stand pameran PLP Holistik SDN Rawu 2025.',
     icon: 'fas fa-images',
     images: [
-      { src: 'assets/images/dokumentasi/lainlain/01.jpg', alt: 'Stand PLP Holistik SDN Rawu 2025', desc: 'Menjaga stand pameran hasil PLP Holistik SDN Rawu 2025.' }
+      { src: 'assets/images/dokumentasi/lainlain/01.jpg', alt: 'Stand PLP Holistik SDN Rawu 2025', desc: 'Menjaga stand pameran hasil PLP Holistik SDN Rawu 2025.' },
+      { src: 'assets/images/dokumentasi/lainlain/02.jpg', alt: 'Sosialisasi Tabligh Akbar', desc: 'Sosialisasi pada acara Tabligh Akbar.' }
     ]
   }
 ];
