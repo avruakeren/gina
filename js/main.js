@@ -225,61 +225,6 @@ filterBtns.forEach(btn => {
   });
 });
 
-/* ── 8. CONTACT FORM VALIDATION ─────────────────────────────── */
-const contactForm = document.getElementById('contact-form');
-
-function showError(id, msg) {
-  const err = document.getElementById(id + '-error');
-  const inp = document.getElementById(id);
-  if (err) err.textContent = msg;
-  if (inp) inp.style.borderColor = 'var(--danger)';
-}
-function clearError(id) {
-  const err = document.getElementById(id + '-error');
-  const inp = document.getElementById(id);
-  if (err) err.textContent = '';
-  if (inp) inp.style.borderColor = '';
-}
-function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
-
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name    = document.getElementById('name').value.trim();
-    const email   = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-    let isValid = true;
-
-    clearError('name');
-    if (name.length < 3) { showError('name', 'Nama minimal 3 karakter.'); isValid = false; }
-
-    clearError('email');
-    if (!validateEmail(email)) { showError('email', 'Masukkan alamat email yang valid.'); isValid = false; }
-
-    clearError('message');
-    if (message.length < 10) { showError('message', 'Pesan minimal 10 karakter.'); isValid = false; }
-
-    if (isValid) {
-      const successEl = document.getElementById('form-success');
-      const submitBtn = document.getElementById('submit-btn');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Mengirim...';
-      setTimeout(() => {
-        contactForm.reset();
-        successEl.textContent = '✅ Pesan berhasil dikirim! Saya akan segera membalas.';
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pesan';
-        setTimeout(() => { successEl.textContent = ''; }, 5000);
-      }, 1500);
-    }
-  });
-
-  ['name', 'email', 'message'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', () => clearError(id));
-  });
-}
-
 /* ── 9. BACK TO TOP ─────────────────────────────────────────── */
 const backToTopBtn = document.getElementById('back-to-top');
 window.addEventListener('scroll', () => {
@@ -354,11 +299,8 @@ function animateParticles() {
 }
 animateParticles();
 
-/* ── 11. DOWNLOAD CV (PLACEHOLDER) ─────────────────────────── */
-document.getElementById('download-cv')?.addEventListener('click', (e) => {
-  e.preventDefault();
-  alert('📄 CV belum tersedia. Silakan hubungi saya langsung melalui form kontak!');
-});
+/* ── 11. DOWNLOAD CV — unduhan langsung via atribut download
+   di #download-cv (index.html). Tidak perlu handler JS. ─────── */
 
 /* ── 12. HERO ENTRANCE (anime.js) ──────────────────────────── */
 (function () {
@@ -409,6 +351,70 @@ document.getElementById('download-cv')?.addEventListener('click', (e) => {
   };
   document.querySelectorAll('.stat-card, .cert-card').forEach(el => bindHover(el, true));
   document.querySelectorAll('.tool-badge, .social-link, .btn-primary, .btn-outline').forEach(el => bindHover(el, false));
+})();
+
+/* ── 14. ABOUT PHOTO SLIDER ───────────────────────────────── */
+(function () {
+  var slider = document.getElementById('about-slider');
+  var track = document.getElementById('about-track');
+  if (!slider || !track) return;
+  var slides = track.querySelectorAll('img');
+  if (slides.length < 2) return;
+  var prev = document.getElementById('about-prev');
+  var next = document.getElementById('about-next');
+  var dotsBox = document.getElementById('about-dots');
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var i = 0, timer = null, touchX = null;
+
+  slides.forEach(function (_, j) {
+    var d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'about-dot';
+    d.setAttribute('role', 'tab');
+    d.setAttribute('aria-label', 'Tampilkan foto ' + (j + 1));
+    d.addEventListener('click', function () { go(j); restart(); });
+    dotsBox.appendChild(d);
+  });
+  var dots = dotsBox.querySelectorAll('.about-dot');
+
+  function go(j) {
+    i = (j + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (i * 100) + '%)';
+    dots.forEach(function (d, k) {
+      d.classList.toggle('active', k === i);
+      d.setAttribute('aria-selected', k === i ? 'true' : 'false');
+    });
+  }
+  function start() {
+    if (REDUCED || timer) return;
+    timer = setInterval(function () { go(i + 1); }, 5000);
+  }
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+  function restart() { stop(); start(); }
+
+  prev.addEventListener('click', function () { go(i - 1); restart(); });
+  next.addEventListener('click', function () { go(i + 1); restart(); });
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+  slider.addEventListener('touchstart', function (e) {
+    touchX = e.changedTouches[0].clientX;
+    stop();
+  }, { passive: true });
+  slider.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+    start();
+  }, { passive: true });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else start();
+  });
+
+  go(0);
+  start();
 })();
 
 console.log('%c🚀 Portofolio Gina loaded!', 'color:#6C63FF;font-size:14px;font-weight:bold;');

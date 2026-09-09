@@ -37,7 +37,7 @@ window.DOKUMEN_ITEMS = [
     title: 'Gobak Sodor',
     desc: 'Karya permainan edukatif yang telah terdaftar hak cipta di PDKI DJKI.',
     tags: ['HKI', 'Hak Cipta'],
-    link: 'https://pdki-indonesia.dgip.go.id:/link/45433030323032343236323235397c636f70797269676874',
+    link: 'https://pdki-indonesia.dgip.go.id/detail/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
     chipLabel: 'HKI · PDKI'
   },
   {
@@ -45,7 +45,7 @@ window.DOKUMEN_ITEMS = [
     title: 'Koper Bilbul',
     desc: 'Karya edukatif yang telah terdaftar hak cipta di PDKI DJKI.',
     tags: ['HKI', 'Hak Cipta'],
-    link: 'https://pdki-indonesia.dgip.go.id/detail/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+    link: 'https://pdki-indonesia.dgip.go.id:/link/45433030323032343236323235397c636f70797269676874',
     chipLabel: 'HKI · PDKI'
   },
   /* ── PERANGKAT PEMBELAJARAN ── */
@@ -81,6 +81,7 @@ window.DOKUMEN_ITEMS = [
     title: 'SI PINTAR: Simak, dan Pahami Inti Paragraf',
     desc: 'Media pembelajaran interaktif Genially tentang ide pokok dan ide pendukung untuk siswa sekolah dasar.',
     tags: ['Genially', 'B. Indonesia'],
+    thumb: 'assets/images/docs/thumb-si-pintar.jpg',
     link: 'https://view.genially.com/6943a2d9f4a57ed704cd820a',
     chipLabel: 'Genially · Interaktif'
   },
@@ -196,10 +197,12 @@ window.DOKUMEN_ITEMS = [
   var html = window.DOKUMEN_ITEMS.map(function (it, i) {
     var tags = it.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('');
     var chip = it.chipLabel || it.fileLabel.split('·').slice(0, 2).join('·').trim();
+    var coverImg = '<img src="' + it.thumb + '" alt="Pratinjau ' + it.title + '" loading="lazy">' +
+        '<span class="doc-chip">' + chip + '</span>';
     var cover = it.thumb
-      ? '<a class="doc-thumb" href="#" data-doc="' + i + '" aria-label="Pratinjau ' + it.title + '">' +
-        '<img src="' + it.thumb + '" alt="Pratinjau ' + it.title + '" loading="lazy">' +
-        '<span class="doc-chip">' + chip + '</span></a>'
+      ? (it.link
+        ? '<a class="doc-thumb" href="' + it.link + '" target="_blank" rel="noopener" aria-label="Kunjungi ' + it.title + '">' + coverImg + '</a>'
+        : '<a class="doc-thumb" href="#" data-doc="' + i + '" aria-label="Pratinjau ' + it.title + '">' + coverImg + '</a>')
       : '<div class="doc-cover doc-' + it.cat + '">' +
         '<i class="' + it.icon + '"></i>' +
         '<span>' + chip + '</span>' +

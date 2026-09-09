@@ -402,20 +402,78 @@ section[id] { scroll-margin-top: calc(var(--navbar-h) + 1rem); }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
   align-items: center;
   margin-bottom: 4rem;
 }
 
 .about-img-box { position: relative; display: inline-block; width: 100%; }
 
-.about-img-box img {
+/* ── ABOUT PHOTO SLIDER ───────────────────────────────────── */
+.about-slider {
+  position: relative;
   border-radius: var(--radius-lg);
-  width: 100%;
-  object-fit: cover;
-  max-height: 450px;
+  overflow: hidden;
   box-shadow: var(--shadow);
+  touch-action: pan-y;
+}
+
+.about-track { display: flex; transition: transform .55s var(--ease); }
+
+.about-track img {
+  width: 100%;
+  flex-shrink: 0;
+  height: 500px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.about-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(13, 17, 23, .55);
+  border: 1px solid rgba(255, 255, 255, .25);
+  color: #fff;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition), background var(--transition);
+}
+
+.about-slider:hover .about-nav,
+.about-nav:focus-visible { opacity: 1; }
+
+.about-nav.prev { left: .75rem; }
+.about-nav.next { right: .75rem; }
+.about-nav:hover { background: var(--primary); }
+
+.about-dots {
+  position: absolute;
+  bottom: .8rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: .45rem;
+}
+
+.about-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .45);
+  padding: 0;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.about-dot.active { background: #fff; transform: scale(1.25); }
+
+@media (hover: none) {
+  .about-nav { opacity: 1; }
 }
 
 .exp-badge {
@@ -760,8 +818,6 @@ section[id] { scroll-margin-top: calc(var(--navbar-h) + 1rem); }
   font-family: 'Fira Code', monospace;
 }
 
-.projects-cta { text-align: center; margin-top: 3rem; }
-
 /* ── EDUCATION ────────────────────────────────────────────── */
 #education { background: var(--surface); }
 
@@ -860,9 +916,8 @@ section[id] { scroll-margin-top: calc(var(--navbar-h) + 1rem); }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: minmax(280px, 640px);
+  justify-content: center;
 }
 
 .contact-info h3 { font-size: 1.4rem; margin-bottom: 1rem; }
@@ -894,34 +949,6 @@ section[id] { scroll-margin-top: calc(var(--navbar-h) + 1rem); }
 .contact-item > div a:hover { color: var(--primary); }
 
 .contact-socials { display: flex; gap: .75rem; }
-
-.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-
-.form-group { display: flex; flex-direction: column; gap: .4rem; }
-.form-group label { font-size: .875rem; font-weight: 500; }
-
-.form-group input,
-.form-group textarea {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: .75rem 1rem;
-  color: var(--text);
-  font-family: inherit;
-  font-size: .9rem;
-  transition: all var(--transition);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(91, 155, 213, .15);
-}
-
-.form-group textarea { resize: vertical; min-height: 120px; }
-.field-error { font-size: .78rem; color: var(--danger); }
-.form-success { text-align: center; color: var(--accent); font-weight: 600; font-size: .9rem; }
 
 /* ── FOOTER ───────────────────────────────────────────────── */
 #footer {
@@ -1145,13 +1172,13 @@ section[id] { scroll-margin-top: calc(var(--navbar-h) + 1rem); }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   .skills-wrapper { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
   .footer-container { flex-direction: column; text-align: center; }
 }
 
 @media (max-width: 480px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .certs-grid { grid-template-columns: 1fr; }
+  .about-track img { height: 360px; }
   .section-title { font-size: 1.6rem; }
   .profile-ring { width: 180px; height: 180px; }
   .exp-badge { right: 0; bottom: -15px; }
@@ -1168,5 +1195,418 @@ section[id] { scroll-margin-top: calc(var(--navbar-h) + 1rem); }
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; filter: none; }
+}
+
+/* ── DOKUMENTASI KEGIATAN ─────────────────────────────────── */
+#dokumentasi { background: var(--bg); }
+
+.section-sub {
+  color: var(--text-muted);
+  font-size: .95rem;
+  max-width: 640px;
+  margin: 1rem auto 0;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.album-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.album-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/10;
+  padding: 0;
+  position: relative;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.album-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.album-cover-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  height: 100%;
+  color: var(--primary);
+}
+
+.album-cover-empty > i { font-size: 2.4rem; opacity: .8; }
+
+.album-cover-empty > span {
+  font-size: .72rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-muted);
+}
+
+.album-count {
+  position: absolute;
+  bottom: .6rem; right: .6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: .68rem;
+  font-weight: 600;
+  font-family: 'Fira Code', monospace;
+  padding: .15rem .55rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.album-body { padding: 1.25rem; }
+.album-body h3 { font-size: 1rem; margin-bottom: .5rem; }
+.album-body p { font-size: .875rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+/* ── POLISH DOKUMENTASI ───────────────────────────────────── */
+.album-stats {
+  display: flex;
+  justify-content: center;
+  gap: .6rem;
+  margin-top: 1.25rem;
+}
+
+.album-stats span {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-size: .78rem;
+  font-weight: 600;
+  font-family: 'Fira Code', monospace;
+  color: var(--primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: .35rem .95rem;
+}
+
+.album-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.album-card.featured { grid-column: span 2; }
+.album-card.featured .album-cover { aspect-ratio: 21/9; }
+
+.album-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .6s var(--ease);
+}
+
+.album-card:hover .album-cover img { transform: scale(1.07); }
+
+.album-cover.has-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, .5), transparent 45%);
+  pointer-events: none;
+}
+
+.album-view {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(.7);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(13, 17, 23, .55);
+  border: 1px solid rgba(255, 255, 255, .4);
+  color: #fff;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition), transform var(--transition);
+  pointer-events: none;
+}
+
+.album-card:hover .album-view {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.album-cover-empty > i {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: rgba(143, 188, 212, .12);
+  border: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.album-thumb { position: relative; }
+
+.album-thumb-cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1rem .6rem .5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, .75), transparent);
+  color: #fff;
+  font-size: .68rem;
+  line-height: 1.4;
+  text-align: left;
+  opacity: 0;
+  transition: opacity var(--transition);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.album-thumb:hover .album-thumb-cap,
+.album-thumb:focus-visible .album-thumb-cap { opacity: 1; }
+
+/* Lightbox: backdrop blur + bingkai + animasi ganti foto */
+.lightbox {
+  background: rgba(0, 0, 0, .85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.lightbox-figure img {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .6);
+  border: 1px solid rgba(255, 255, 255, .15);
+}
+
+.lightbox-figure.swap img { animation: lbSwap .35s var(--ease); }
+.lightbox-figure.swap figcaption { animation: lbFade .35s var(--ease); }
+
+@keyframes lbSwap {
+  from { opacity: 0; transform: scale(.97) translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes lbFade {
+  from { opacity: 0; }
+  to { opacity: .8; }
+}
+
+/* ── MODAL GALERI ALBUM (meniru .doc-modal) ───────────────── */
+.album-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(13, 17, 23, .7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+[data-theme="light"] .album-modal { background: rgba(42, 53, 66, .5); }
+
+.album-modal.open { display: flex; }
+
+.album-modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  width: min(900px, 100%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.album-modal-desc {
+  padding: .75rem 1.25rem 0;
+  font-size: .875rem;
+  color: var(--text-muted);
+}
+
+.album-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: .75rem;
+  padding: 1rem 1.25rem 1.25rem;
+  overflow-y: auto;
+}
+
+.album-thumb {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  aspect-ratio: 1/1;
+  padding: 0;
+  background: var(--surface2);
+}
+
+.album-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition);
+}
+
+.album-thumb:hover img { transform: scale(1.06); }
+
+.album-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-muted);
+}
+
+.album-empty i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  display: block;
+  margin-bottom: .75rem;
+  opacity: .7;
+}
+
+/* ── LIGHTBOX FOTO ────────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, .92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox-figure {
+  max-width: min(1000px, 88vw);
+  text-align: center;
+  margin: 0;
+}
+
+.lightbox-figure img {
+  max-width: 100%;
+  max-height: 78vh;
+  border-radius: var(--radius);
+  object-fit: contain;
+  background: #000;
+}
+
+.lightbox-figure figcaption {
+  color: #fff;
+  opacity: .8;
+  font-size: .85rem;
+  margin-top: .75rem;
+}
+
+#lightbox-caption strong {
+  display: block;
+  font-size: .95rem;
+}
+
+#lightbox-caption .lb-desc {
+  display: block;
+  opacity: .75;
+  font-size: .8rem;
+  margin-top: .2rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#lightbox-caption .lb-count {
+  display: inline-block;
+  margin-top: .45rem;
+  font-family: 'Fira Code', monospace;
+  font-size: .72rem;
+  opacity: .6;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .25);
+  color: #fff;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+
+.lightbox-close:hover { background: var(--primary); }
+
+.lightbox-nav {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .25);
+  color: #fff;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+
+.lightbox-nav:hover { background: var(--primary); }
+
+/* ── TIMELINE TUNGGAL & SERTIFIKAT RAPI ───────────────────── */
+.timeline.single { margin-bottom: 2.5rem; }
+.timeline.single::before { display: none; }
+
+.certs-grid.single {
+  grid-template-columns: minmax(280px, 420px);
+  justify-content: center;
+}
+
+.certs-more {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .9rem;
+  margin-top: 1.5rem;
+}
+
+.certs-more a { color: var(--primary); font-weight: 600; }
+.certs-more a:hover { text-decoration: underline; }
+
+/* ── RESPONSIVE DOKUMENTASI ───────────────────────────────── */
+@media (max-width: 1024px) {
+  .album-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .album-grid { grid-template-columns: 1fr; }
+  .album-card.featured { grid-column: auto; }
+  .album-card.featured .album-cover { aspect-ratio: 16/10; }
+  .lightbox { gap: .25rem; padding: .5rem; }
+  .lightbox-nav {
+    width: 38px; height: 38px;
+    position: absolute;
+    bottom: 1rem;
+  }
+  .lightbox-nav.prev { left: 1rem; }
+  .lightbox-nav.next { right: 1rem; }
 }
     
